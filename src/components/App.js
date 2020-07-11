@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 import ProductCreate from './products/ProductCreate';
 import ProductDelete from './products/ProductDelete';
 import ProductEdit from './products/ProductEdit';
@@ -13,7 +13,7 @@ class App extends React.Component {
   render() {
     return (
       <div className="ui container" style={{ marginTop: '10px' }}>
-        <BrowserRouter>
+        <HashRouter>
           <Header />
           <Route path="/" exact component={Purchase} />
           <Route path="/products/add" exact component={ProductAdd} />
@@ -22,7 +22,7 @@ class App extends React.Component {
           <Route path="/products/delete" exact component={ProductDelete} />
           <Route path="/products/edit" exact component={ProductEdit} />
           <Route path="/products/show" exact component={ProductShow} />
-        </BrowserRouter>
+        </HashRouter>
       </div>
     );
   }
