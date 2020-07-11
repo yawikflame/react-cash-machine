@@ -1,19 +1,19 @@
 {
   "files": {
-    "main.js": "/react-cash-machine/static/js/main.e31b8b6a.chunk.js",
-    "main.js.map": "/react-cash-machine/static/js/main.e31b8b6a.chunk.js.map",
+    "main.js": "/react-cash-machine/static/js/main.cc22b11b.chunk.js",
+    "main.js.map": "/react-cash-machine/static/js/main.cc22b11b.chunk.js.map",
     "runtime-main.js": "/react-cash-machine/static/js/runtime-main.587dd073.js",
     "runtime-main.js.map": "/react-cash-machine/static/js/runtime-main.587dd073.js.map",
-    "static/js/2.a97aea64.chunk.js": "/react-cash-machine/static/js/2.a97aea64.chunk.js",
-    "static/js/2.a97aea64.chunk.js.map": "/react-cash-machine/static/js/2.a97aea64.chunk.js.map",
+    "static/js/2.ca36a2f9.chunk.js": "/react-cash-machine/static/js/2.ca36a2f9.chunk.js",
+    "static/js/2.ca36a2f9.chunk.js.map": "/react-cash-machine/static/js/2.ca36a2f9.chunk.js.map",
     "index.html": "/react-cash-machine/index.html",
-    "precache-manifest.eb4d5d0c9cc80f3c9931d67569aa2f94.js": "/react-cash-machine/precache-manifest.eb4d5d0c9cc80f3c9931d67569aa2f94.js",
+    "precache-manifest.e10a32de29d9dc0d1a8b50fb227d0ed0.js": "/react-cash-machine/precache-manifest.e10a32de29d9dc0d1a8b50fb227d0ed0.js",
     "service-worker.js": "/react-cash-machine/service-worker.js",
-    "static/js/2.a97aea64.chunk.js.LICENSE.txt": "/react-cash-machine/static/js/2.a97aea64.chunk.js.LICENSE.txt"
+    "static/js/2.ca36a2f9.chunk.js.LICENSE.txt": "/react-cash-machine/static/js/2.ca36a2f9.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
     "static/js/runtime-main.587dd073.js",
-    "static/js/2.a97aea64.chunk.js",
-    "static/js/main.e31b8b6a.chunk.js"
+    "static/js/2.ca36a2f9.chunk.js",
+    "static/js/main.cc22b11b.chunk.js"
   ]
 }
