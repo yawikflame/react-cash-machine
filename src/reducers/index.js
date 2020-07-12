@@ -4,7 +4,7 @@ import { productReducer } from './productReducer';
 import { purchaseReducer } from './purchaseReducer';
 import { inputReducer } from './inputReducer';
 import { selectProductReducer } from './selectProductReducer';
-import { filteredProductsReducer } from './filteredProductReducer copy';
+import { filteredProductsReducer } from './filteredProductReducer';
 
 export default combineReducers({
   products: productReducer,

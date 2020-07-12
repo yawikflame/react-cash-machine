@@ -8,11 +8,12 @@ import {
   addProduct,
 } from '../../actions';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 
 class ProductCreate extends React.Component {
+  itemsPrice = 0;
+
   componentDidMount = () => {
-    this.itemsPrice = 0;
     this.props.filterProducts(this.props.products, '');
     this.props.selectProduct(this.props.products, null);
   };
@@ -22,8 +23,16 @@ class ProductCreate extends React.Component {
     this.props.filterProducts(this.props.products, event.target.value);
   };
 
-  onPriceChange = (formValues) => {
-    this.itemsPrice = formValues.productPrice * formValues.productQuantity;
+  onPriceChange = () => {
+    console.log(this.props.form.productCreate.values);
+    if (this.props.form.productCreate.values.length > 0) {
+      console.log('here?'); // TODO: fix this
+      this.props.change(
+        'productCalculatedPrice',
+        this.props.productCreate.values.productPrice *
+          Number(this.props.productCreate.values.productQuantity)
+      );
+    }
   };
 
   renderList = () => {
@@ -77,14 +86,24 @@ class ProductCreate extends React.Component {
     );
   };
 
-  onProductSelect = (productId) => {
-    this.props.selectProduct(this.props.products, productId);
+  onProductSelect = async (productId) => {
+    // console.log(this.props.selectedProduct);
+    await this.props.selectProduct(this.props.products, productId);
+    if (this.props.selectedProduct.length > 0) {
+      this.props.change(
+        'productName',
+        this.props.selectedProduct[0].productName
+      );
+      this.props.change(
+        'productPrice',
+        this.props.selectedProduct[0].productPrice
+      );
+    }
   };
 
   onSubmit = (formValues) => {
     this.props.addProduct(formValues);
-    formValues.productName = '';
-    formValues.productPrice = '';
+    this.props.reset();
     this.props.history.push('/');
   };
 
@@ -107,16 +126,21 @@ class ProductCreate extends React.Component {
                 name="productPrice"
                 component={this.renderInput}
                 label="Product Price"
-                onChange={this.props.handleSubmit(this.onPriceChange)}
+                onChange={this.onPriceChange}
               />
               <Field
                 name="productQuantity"
                 component={this.renderInput}
                 label="Product Quantity"
-                onChange={this.props.handleSubmit(this.onPriceChange)}
+                onChange={this.onPriceChange}
               />
-              <p>Calculated Price: {this.itemsPrice ? this.itemsPrice : 0}</p>
-              <div>{this.props.itemsPrice}</div>
+              <Field
+                name="productCalculatedPrice"
+                component={this.renderInput}
+                label="Calculated Price"
+                input={{ disabled: true }}
+              />
+              {/* <p>Calculated Price: {this.itemsPrice}</p> */}
               <div className="ui three column centered grid">
                 <div className="column">
                   <button className="ui button primary">Submit</button>
@@ -157,6 +181,7 @@ const mapStateToProps = (state) => {
     filteredProducts: state.filteredProducts,
     products: state.products,
     selectedProduct: state.selectedProduct,
+    form: state.form,
   };
 };
 
