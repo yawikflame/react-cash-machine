@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/react-cash-machine/precache-manifest.acae96f8b45b421b9595b2ecdce1f4db.js"
+  "/react-cash-machine/precache-manifest.3050a3477089d1a65e5d698ebdaaad00.js"
 );
 
 self.addEventListener('message', (event) => {
