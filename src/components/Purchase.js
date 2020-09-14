@@ -3,7 +3,14 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 class Purchase extends React.Component {
+
   renderList = () => {
+    const priceResults = this.props.purchases.map(
+      ({ productPrice, productQuantity }) => productPrice * productQuantity
+    )
+
+    priceResults = priceResults.reduce((a,b) => a + b, 0);
+
     return [
       this.props.purchases.map(
         ({ productId, productName, productPrice, productQuantity }) => {
@@ -20,9 +27,7 @@ class Purchase extends React.Component {
         }
       ),
       <div>
-        <h2>{`Total price: ${this.props.purchases.map(
-          ({ productPrice, productQuantity }) => productPrice * productQuantity
-        )}`}</h2>
+        <h2>{`Total price: ${priceResults}`}</h2>
       </div>,
     ];
   };
