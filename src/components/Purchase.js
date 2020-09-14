@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 class Purchase extends React.Component {
 
   renderList = () => {
-    const priceResults = this.props.purchases.map(
+    let priceResults = this.props.purchases.map(
       ({ productPrice, productQuantity }) => productPrice * productQuantity
     )
 
