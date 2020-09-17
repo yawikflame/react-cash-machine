@@ -15,6 +15,7 @@ class ProductCreate extends React.Component {
   componentDidMount = () => {
     this.props.filterProducts(this.props.products, '');
     this.props.selectProduct(this.props.products, null);
+    this.props.initialize({productQuantity: "1"})
   };
 
   onInputChange = (event) => {
@@ -23,12 +24,11 @@ class ProductCreate extends React.Component {
   };
 
   onPriceChange = (event) => {
-    console.log(this.props.form.productCreate.values);
+    // console.log(this.props.form.productCreate.values);
       this.props.change(
         'productCalculatedPrice',
         this.props.form.productCreate.values.productPrice *
         Number(event.target.value)
-          // Number(this.props.form.productCreate.values.productQuantity)
       );
   };
 
@@ -72,12 +72,12 @@ class ProductCreate extends React.Component {
     }
   };
 
-  renderInput = ({ input, label, meta }) => {
+  renderInput = ({ input, label, meta, disabled }) => {
     const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
     return (
       <div className={className}>
         <label>{label}</label>
-        <input {...input} />
+        <input {...input} disabled={disabled} />
         {this.renderError(meta)}
       </div>
     );
@@ -96,11 +96,11 @@ class ProductCreate extends React.Component {
         this.props.selectedProduct[0].productPrice
       );
       // TODO: fix this
-      // this.props.change(
-      //   'productCalculatedPrice',
-      //   this.props.selectedProduct[0].productPrice *
-      //   this.props.form.productCreate.values.productQuantity !== undefined ? this.props.form.productCreate.values.productQuantity : 1
-      // );
+      this.props.change(
+        'productCalculatedPrice',
+        this.props.selectedProduct[0].productPrice *
+        this.props.form.productCreate.values.productQuantity
+      );
     }
   };
 
@@ -141,7 +141,7 @@ class ProductCreate extends React.Component {
                 name="productCalculatedPrice"
                 component={this.renderInput}
                 label="Calculated Price"
-                // input={{ disabled: true }}
+                props={{disabled: true}}
               />
               <div className="ui three column centered grid">
                 <div className="column">
