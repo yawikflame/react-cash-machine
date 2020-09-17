@@ -11,7 +11,6 @@ import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 
 class ProductCreate extends React.Component {
-  itemsPrice = 0;
 
   componentDidMount = () => {
     this.props.filterProducts(this.props.products, '');
@@ -23,16 +22,14 @@ class ProductCreate extends React.Component {
     this.props.filterProducts(this.props.products, event.target.value);
   };
 
-  onPriceChange = () => {
+  onPriceChange = (event) => {
     console.log(this.props.form.productCreate.values);
-    if (this.props.form.productCreate.values.length > 0) {
-      console.log('here?'); // TODO: fix this
       this.props.change(
         'productCalculatedPrice',
-        this.props.productCreate.values.productPrice *
-          Number(this.props.productCreate.values.productQuantity)
+        this.props.form.productCreate.values.productPrice *
+        Number(event.target.value)
+          // Number(this.props.form.productCreate.values.productQuantity)
       );
-    }
   };
 
   renderList = () => {
@@ -98,6 +95,12 @@ class ProductCreate extends React.Component {
         'productPrice',
         this.props.selectedProduct[0].productPrice
       );
+      // TODO: fix this
+      // this.props.change(
+      //   'productCalculatedPrice',
+      //   this.props.selectedProduct[0].productPrice *
+      //   this.props.form.productCreate.values.productQuantity !== undefined ? this.props.form.productCreate.values.productQuantity : 1
+      // );
     }
   };
 
@@ -126,21 +129,20 @@ class ProductCreate extends React.Component {
                 name="productPrice"
                 component={this.renderInput}
                 label="Product Price"
-                onChange={this.onPriceChange}
+                onChange={(e) => this.onPriceChange(e)}
               />
               <Field
                 name="productQuantity"
                 component={this.renderInput}
                 label="Product Quantity"
-                onChange={this.onPriceChange}
+                onChange={(e) => this.onPriceChange(e)}
               />
               <Field
                 name="productCalculatedPrice"
                 component={this.renderInput}
                 label="Calculated Price"
-                input={{ disabled: true }}
+                // input={{ disabled: true }}
               />
-              {/* <p>Calculated Price: {this.itemsPrice}</p> */}
               <div className="ui three column centered grid">
                 <div className="column">
                   <button className="ui button primary">Submit</button>
