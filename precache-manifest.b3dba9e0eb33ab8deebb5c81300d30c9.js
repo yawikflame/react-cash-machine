@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "6384d89d13a3363245ad29dd39b18666",
+    "revision": "4004f6bb4d2bd238b1608a0916cfdfb6",
     "url": "/react-cash-machine/index.html"
   },
   {
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/react-cash-machine/static/js/2.15ab8f58.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "0cc108276ae00a16f5d4",
-    "url": "/react-cash-machine/static/js/main.4d7a7b67.chunk.js"
+    "revision": "b18f3a7bd0b45dc320cd",
+    "url": "/react-cash-machine/static/js/main.7640b9c6.chunk.js"
   },
   {
     "revision": "27c16dc0628688230659",
