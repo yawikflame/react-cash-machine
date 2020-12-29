@@ -1,21 +1,20 @@
-import React from 'react';
-import { withRouter } from 'react-router-dom';
+import React from "react";
+import { withRouter } from "react-router-dom";
 import {
   getProducts,
   filterProducts,
   inputChange,
   selectProduct,
   addProduct,
-} from '../../actions';
-import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+} from "../../actions";
+import { connect } from "react-redux";
+import { Field, reduxForm } from "redux-form";
 
 class ProductCreate extends React.Component {
-
   componentDidMount = () => {
-    this.props.filterProducts(this.props.products, '');
+    this.props.filterProducts(this.props.products, "");
     this.props.selectProduct(this.props.products, null);
-    this.props.initialize({productQuantity: "1"})
+    this.props.initialize({ productQuantity: "1" });
   };
 
   onInputChange = (event) => {
@@ -25,11 +24,11 @@ class ProductCreate extends React.Component {
 
   onPriceChange = (event) => {
     // console.log(this.props.form.productCreate.values);
-      this.props.change(
-        'productCalculatedPrice',
-        this.props.form.productCreate.values.productPrice *
+    this.props.change(
+      "productCalculatedPrice",
+      this.props.form.productCreate.values.productPrice *
         Number(event.target.value)
-      );
+    );
   };
 
   renderList = () => {
@@ -41,13 +40,13 @@ class ProductCreate extends React.Component {
             key={productId}
             onClick={() => this.onProductSelect(productId)}
             style={{
-              cursor: 'pointer',
+              cursor: "pointer",
               backgroundColor:
                 this.props.selectedProduct.length > 0
                   ? this.props.selectedProduct[0].productId === productId
-                    ? 'green'
-                    : ''
-                  : '',
+                    ? "green"
+                    : ""
+                  : "",
             }}
           >
             <div className="content">
@@ -73,7 +72,7 @@ class ProductCreate extends React.Component {
   };
 
   renderInput = ({ input, label, meta, disabled }) => {
-    const className = `field ${meta.error && meta.touched ? 'error' : ''}`;
+    const className = `field ${meta.error && meta.touched ? "error" : ""}`;
     return (
       <div className={className}>
         <label>{label}</label>
@@ -88,18 +87,18 @@ class ProductCreate extends React.Component {
     await this.props.selectProduct(this.props.products, productId);
     if (this.props.selectedProduct.length > 0) {
       this.props.change(
-        'productName',
+        "productName",
         this.props.selectedProduct[0].productName
       );
       this.props.change(
-        'productPrice',
+        "productPrice",
         this.props.selectedProduct[0].productPrice
       );
       // TODO: fix this
       this.props.change(
-        'productCalculatedPrice',
+        "productCalculatedPrice",
         this.props.selectedProduct[0].productPrice *
-        this.props.form.productCreate.values.productQuantity
+          this.props.form.productCreate.values.productQuantity
       );
     }
   };
@@ -107,7 +106,7 @@ class ProductCreate extends React.Component {
   onSubmit = (formValues) => {
     this.props.addProduct(formValues);
     this.props.reset();
-    this.props.history.push('/');
+    this.props.history.push("/");
   };
 
   render() {
@@ -130,6 +129,7 @@ class ProductCreate extends React.Component {
                 component={this.renderInput}
                 label="Product Price"
                 onChange={(e) => this.onPriceChange(e)}
+                props={{ disabled: true }}
               />
               <Field
                 name="productQuantity"
@@ -141,7 +141,7 @@ class ProductCreate extends React.Component {
                 name="productCalculatedPrice"
                 component={this.renderInput}
                 label="Calculated Price"
-                props={{disabled: true}}
+                props={{ disabled: true }}
               />
               <div className="ui three column centered grid">
                 <div className="column">
@@ -168,11 +168,11 @@ const validate = (formValues) => {
   const errors = {};
 
   if (!formValues.productName) {
-    errors.productName = 'You must enter a product name';
+    errors.productName = "You must enter a product name";
   }
 
   if (!formValues.productPrice) {
-    errors.productPrice = 'You must enter a product price';
+    errors.productPrice = "You must enter a product price";
   }
 
   return errors;
@@ -198,6 +198,6 @@ ProductCreate = connect(mapStateToProps, {
 })(ProductCreate);
 
 export default reduxForm({
-  form: 'productCreate',
+  form: "productCreate",
   validate,
 })(ProductCreate);
